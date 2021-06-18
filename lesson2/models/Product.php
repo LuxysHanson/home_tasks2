@@ -8,11 +8,11 @@ class Product extends Model
     public $name;
     public $description;
     public $price;
-
+    public $imageId;
 
     protected function getTableName()
     {
-        return 'goods';
+        return 'products';
     }
 
 

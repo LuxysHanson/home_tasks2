@@ -1,29 +1,23 @@
 <?php
 
-use app\interfaces\IModel;
-use app\models\Product;
-use app\models\User;
-use app\engine\Db;
+use app\models\products\Digital;
+use app\models\products\Gravimetric;
+use app\models\products\Piece;
 
 require __DIR__ . '/../autoload.php';
 
-$product = new Product(new Db());
+$piece = new Piece(50);
+$piece->calculationOfCost(10);
+$piece->getInfo();
+$piece->info();
 
+$digital = new Digital(50);
+$digital->calculationOfCost(10);
+$digital->getInfo();
+$digital->info();
 
-$product->getOne(15);
-//$product->getAll();
-
-$user = new User(new Db());
-
-$user->getOne(2);
-$user->getAll();
-
-
-function foo(IModel $model) {
-    $model->getAll();
-}
-
-foo($product);
-foo($user);
-
-var_dump($product);
+$gravimetric = new Gravimetric(50);
+$gravimetric->calculationOfCost(1100);
+$gravimetric->getInfo();
+$gravimetric->info();
+//var_dump();

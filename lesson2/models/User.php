@@ -6,7 +6,9 @@ class User extends Model
 {
     public $id;
     public $login;
-    public $pass;
+    public $passwordHash;
+    public $role;
+    public $verifyKey;
 
     public function getTableName() {
         return 'users';
