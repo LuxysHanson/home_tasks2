@@ -1,10 +1,13 @@
 <?php
 
+use app\engine\Autoload;
 use app\models\products\Digital;
 use app\models\products\Gravimetric;
 use app\models\products\Piece;
 
-require __DIR__ . '/../autoload.php';
+include __DIR__ . '/../engine/Autoload.php';
+
+(new Autoload())->run();
 
 $piece = new Piece(50);
 $piece->calculationOfCost(10);

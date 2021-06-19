@@ -17,26 +17,32 @@ abstract class Model implements IModel
     }
 
 
-    public function getOne($id) {
+    public function getOne($id)
+    {
         $sql = "SELECT * FROM {$this->getTableName()} WHERE id = {$id}";
 
         echo $this->db->queryOne($sql);
     }
-    public function getAll() {
+
+    public function getAll()
+    {
         $sql = "SELECT * FROM {$this->getTableName()}";
 
         echo $this->db->queryAll($sql);
     }
 
-    public function insert() {
+    public function insert()
+    {
 
     }
 
-    public function update() {
+    public function update()
+    {
 
     }
 
-    public function delete() {
+    public function delete()
+    {
 
     }
 
