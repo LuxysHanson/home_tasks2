@@ -10,7 +10,8 @@ class User extends Model
     public $role;
     public $verifyKey;
 
-    public function getTableName() {
+    public function getTableName()
+    {
         return 'users';
     }
 
