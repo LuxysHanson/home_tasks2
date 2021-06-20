@@ -1,0 +1,21 @@
+<?php
+
+namespace app\models;
+
+class Basket extends Model
+{
+    public $id;
+    public $productId;
+    public $sessionId;
+    public $totalCount;
+
+    public function getTableName()
+    {
+        return 'basket';
+    }
+
+    public function attributes()
+    {
+        // TODO: Implement attributes() method.
+    }
+}
