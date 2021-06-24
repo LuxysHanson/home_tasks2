@@ -1,0 +1,12 @@
+<?php
+/** @var Product $good */
+use app\models\Product; ?>
+
+<h2>Товар</h2>
+
+<div>
+    <h3><?=$good->name?></h3>
+<p><?=$good->description?></p>
+<p>price: <?=$good->price?></p>
+<button>Купить</button>
+</div>
