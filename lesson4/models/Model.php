@@ -48,9 +48,9 @@ abstract class Model implements IModel
         return static::call()->onCondition([ 'id' => $id ])->one();
     }
 
-    public static function getAll($limit = 0)
+    public static function getAll()
     {
-        return static::call()->limit($limit)->all();
+        return static::call()->all();
     }
 
     protected function dataMatchingByFields()

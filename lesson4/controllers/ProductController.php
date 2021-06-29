@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use app\models\Product;
 
-class ProductController extends BaseController
+class ProductController extends Controller
 {
 
     public function actionCatalog()
