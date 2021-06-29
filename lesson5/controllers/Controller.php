@@ -17,6 +17,7 @@ class Controller
     public function __construct(IRenderer $renderer)
     {
         $this->_render = $renderer;
+        $this->_render->setController(get_called_class());
     }
 
     public function actionIndex() {
