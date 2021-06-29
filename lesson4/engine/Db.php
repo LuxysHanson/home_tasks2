@@ -14,7 +14,7 @@ class Db
         $this->config = require __DIR__ . '/../config/db.php';
 
         /** @var $database array */
-        $conn = new PDO($this->prepareDsnString(), $this->config['user'], $this->config['password']);
+        $conn = new PDO($this->prepareDsnString(), $this->config['login'], $this->config['password']);
         $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
         $this->setConnection($conn);
@@ -32,8 +32,8 @@ class Db
 
     protected function prepareDsnString() {
         return sprintf("mysql:host=%s;dbname=%s;",
-            $this->config['root'],
-            $this->config['name']
+            $this->config['host'],
+            $this->config['database']
         );
     }
 

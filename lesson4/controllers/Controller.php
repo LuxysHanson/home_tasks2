@@ -1,9 +1,12 @@
 <?php
 
-namespace app\traits;
+namespace app\controllers;
 
-trait TRender
+class Controller
 {
+
+    private $action = 'index';
+
     private $layout = 'index';
     private $useLayout = true;
 
@@ -71,6 +74,20 @@ trait TRender
             $path .= $controllerName . DS;
         }
         return $path . $template . '.php';
+    }
+
+    public function actionIndex() {
+        echo $this->render('index');
+    }
+
+    public function runAction($action) {
+        $this->action = $action ?? $this->action;
+        $method = 'action' . ucfirst($this->action);
+        if (!method_exists($this, $method)) {
+            die("Экшен не существует!");
+        }
+
+        $this->$method();
     }
 
 }
