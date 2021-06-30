@@ -1,23 +1,22 @@
 <?php
 
-namespace app\engine;
-
-use app\engine\render\Render;
+namespace app\engine\render;
 
 class SimpleRender extends Render
 {
 
-    public function renderTemplate($template, $params = [], $isLayout = false)
+    public function getRenderType()
     {
-        ob_start();
-        extract($params);
-        $templatePath = $this->getTemplatePath($template, $isLayout);
-        if (!file_exists($templatePath)) {
-            die("Шаблона {$template} не существует!");
-        }
-
-        include $templatePath;
-        return ob_get_clean();
+        return '.php';
     }
 
+    public function getViewsPath()
+    {
+        return '../views/';
+    }
+
+    public function renderTemplate($template, $params = [], $isLayout = false)
+    {
+        return parent::renderTemplate($template, $params, $isLayout);
+    }
 }
