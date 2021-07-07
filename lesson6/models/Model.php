@@ -48,6 +48,11 @@ abstract class Model implements IModel
         return static::call()->onCondition([ 'id' => $id ])->one();
     }
 
+    public static function getOneByQuery(array $condition)
+    {
+        return static::call()->onCondition($condition)->one();
+    }
+
     public static function getAll()
     {
         return static::call()->all();
@@ -56,6 +61,11 @@ abstract class Model implements IModel
     public static function getLimit($limit = 5)
     {
         return static::call()->limit($limit)->all();
+    }
+
+    public static function updateByCondition(array $condition)
+    {
+        return static::call()->update($condition);
     }
 
     protected function dataMatchingByFields()

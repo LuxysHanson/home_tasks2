@@ -26,7 +26,8 @@ abstract class Render implements IRenderer
     {
         ob_start();
         extract($params);
-        $templatePath = $this->getTemplatePath($template, $isLayout);
+        $path = $this->getViewsPath();
+        $templatePath = $this->getTemplatePath($path, $template, $isLayout);
         if (!file_exists($templatePath)) {
             die("Шаблона {$template} не существует!");
         }
@@ -46,9 +47,9 @@ abstract class Render implements IRenderer
         return "";
     }
 
-    protected function getTemplatePath($template, $isLayout)
+    protected function getTemplatePath($basePath, $template, $isLayout)
     {
-        $path = $this->getViewsPath();
+        $path = $basePath;
         $controllerName = $this->getControllerName();
         if (!$isLayout && !empty($controllerName)) {
             $path .= $controllerName . DS;

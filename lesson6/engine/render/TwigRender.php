@@ -8,7 +8,14 @@ use Twig_Extension_Debug;
 
 class TwigRender extends Render
 {
-    protected static $twig = null;
+    protected $twig = null;
+
+    public function __construct()
+    {
+        $loader = new FilesystemLoader($this->getViewsPath());
+        $this->twig = new Environment($loader, array('debug' => true));
+        $this->twig->addExtension(new Twig_Extension_Debug());
+    }
 
     public function getRenderType()
     {
@@ -22,19 +29,8 @@ class TwigRender extends Render
 
     public function renderTemplate($template, $params = [], $isLayout = false)
     {
-        $twig = $this->getTwig($template, $isLayout);
-        return $twig->render($template . $this->getRenderType(), $params);
+        $templatePath = $this->getTemplatePath('', $template, $isLayout);
+        return $this->twig->render($templatePath, $params);
     }
 
-
-    protected function getTwig($template, $isLayout)
-    {
-        if (is_null(static::$twig)) {
-            $templatePath = $this->getTemplatePath($template, $isLayout);
-            $loader = new FilesystemLoader($templatePath);
-            static::$twig = new Environment($loader, array('debug' => true));
-            static::$twig->addExtension(new Twig_Extension_Debug());
-        }
-        return static::$twig;
-    }
 }

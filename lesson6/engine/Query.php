@@ -83,14 +83,13 @@ class Query
         $this->getQueryBuilder();
     }
 
-    public function update($id, $data)
+    public function update($attributes)
     {
-        $sql = $this->getSqlChangeQuery($data);
+        $sql = $this->getSqlChangeQuery($attributes);
         if (empty($sql)) {
             die('Нет элементов для изменения');
         }
         $this->setQueryString($sql);
-        $this->where = [ 'id' => $id ];
         $this->getQueryBuilder();
     }
 

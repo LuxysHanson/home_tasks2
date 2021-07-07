@@ -13,6 +13,7 @@ class Controller
     private $useLayout = true;
 
     private $_render = null;
+    private $_request = null;
 
     public function __construct(IRenderer $renderer)
     {
@@ -31,7 +32,7 @@ class Controller
             die("Экшен не существует!");
         }
 
-        $this->$method();
+        call_user_func([$this, $method]);
     }
 
     public function getLayout()
@@ -44,10 +45,21 @@ class Controller
         $this->layout = $layout;
     }
 
+    public function getRequest()
+    {
+        return $this->_request;
+    }
+
+    public function setRequest($request)
+    {
+        $this->_request = $request;
+    }
+
     public function render($template, $params = [])
     {
         if ($this->useLayout) {
             return $this->_render->renderTemplate("layouts/{$this->layout}", [
+                'header' => $this->_render->renderTemplate('header', $params, true),
                 'menu' => $this->_render->renderTemplate('menu', $params, true),
                 'content' => $this->_render->renderTemplate($template, $params)
             ], true);

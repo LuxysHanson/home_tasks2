@@ -16,7 +16,8 @@ abstract class DBModel extends Model
 
     public function update()
     {
-        static::call()->update($this->id, $this->getNewAttributes());
+        $attributes = array_merge($this->getNewAttributes(), [ 'id' => $this->id ]);
+        static::call()->update($attributes);
         return $this;
     }
 

@@ -13,7 +13,7 @@ use app\models\Product;
     <? foreach ($catalog as $item): ?>
         <div>
             <h3>
-                <a href="/?c=product&a=card&id=<?=$item->id?>">
+                <a href="/product/card/?id=<?=$item->id?>">
                     <?=$item->name?>
                 </a>
             </h3>
@@ -22,7 +22,7 @@ use app\models\Product;
         </div>
     <? endforeach ?>
     <br>
-    <a href="/?c=product&a=catalog&page=<?=$page?>">Еще</a>
+    <a href="/product/catalog/?page=<?=$page?>">Еще</a>
 <? else: ?>
     <?= "Каталог товаров отсутствует!" ?>
 <? endif; ?>
